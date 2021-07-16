@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from 'moment';
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import './CalendarGrid.css';
 
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);

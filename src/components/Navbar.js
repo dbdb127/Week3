@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCalendar, faChartBar, faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import './Navbar.css'
 
 const Navbar = () => {
     return (
