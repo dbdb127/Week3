@@ -11,3 +11,78 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.vertical-line{
+    border-left:2px solid gray;
+}
+
+.navbar-nav{
+  position: relative;
+  left: 33%;
+}
+
+.search{
+  margin: 30px 40px 30px 40px;
+}
+
+.month_list{
+    width: 90%;
+    margin: 10px auto;
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.month_before{
+  color: darkgray;
+  flex:1;
+  width:33%;
+}
+
+.month_current{
+  color: black;
+  display: 'center';
+  padding: 15;
+  height: 100;
+  color: '#000';
+  flex:1;
+  width:33%;
+}
+
+.month_after{
+  color: darkgray;
+  flex:1;
+  width:33%;
+}
+
+#year{
+  font-weight: normal;
+  font-size: 16px;;
+}
+
+.month_btn_left{
+  border: none;
+  background-color: inherit;
+  font-size: 30px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  /* color: darkgray; */
+  background: linear-gradient(to left, darkgray, white);
+  color: transparent;
+  -webkit-background-clip: text;
+}
+
+.month_btn_right{
+  border: none;
+  background-color: inherit;
+  font-size: 30px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(to right, darkgray, white);
+  color: transparent;
+  -webkit-background-clip: text;
+}
