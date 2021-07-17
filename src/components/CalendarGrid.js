@@ -7,7 +7,6 @@ import './Modal.css';
 
 moment.locale('en-GB');
 const localizer = momentLocalizer(moment);
-
 const now = new Date();
 
 const CalendarGrid = (props) => {
@@ -24,7 +23,7 @@ const CalendarGrid = (props) => {
         paddingBottom: 100,
       }}
     >
-      {openModal && <Modal closeModal={setOpenModal} />}
+      {openModal && <Modal closeModal={setOpenModal} scrollable={true} />}
       <Calendar
         toolbar={Boolean(false)}
         localizer={localizer}

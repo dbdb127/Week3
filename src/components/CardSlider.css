@@ -1,0 +1,102 @@
+.move {
+  border: none;
+  background-color: inherit;
+  color: black;
+  font-size: 45px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.card0 {
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, orange, orangered);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}
+
+.card1 {
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, #d2691e, #553830);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}
+
+.card2 {
+  /* border: 3px solid blue; */
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, #00aaff, #0000ff);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}
+
+.card3 {
+  /* border: 3px solid yellow; */
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, #ffe650, #ffb400);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}
+
+.card4 {
+  /* border: 3px solid green; */
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, #43a047, #1b5e20);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}
+
+.card5 {
+  /* border: 3px solid red; */
+  width: 250px;
+  height: 140px;
+  border: none;
+  background: linear-gradient(to right bottom, #f08282, #cd0000);
+  color: transparent;
+  border-radius: 12px;
+  color: black;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  display: inline-block;
+  margin: 15px 40px;
+}

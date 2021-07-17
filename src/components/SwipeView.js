@@ -17,7 +17,7 @@ const list = [
   'Dec',
 ];
 
-const Component = (props) => {
+const SwipeView = (props) => {
   return (
     <SwipeableViews
       enableMouseEvents
@@ -69,4 +69,4 @@ const Component = (props) => {
   );
 };
 
-export default Component;
+export default SwipeView;
