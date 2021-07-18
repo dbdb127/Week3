@@ -32,8 +32,6 @@ const CalendarTab = () => {
 
       <CalendarGrid
         index={index}
-        changeIndex_minus={changeIndex_minus}
-        changeIndex_plus={changeIndex_plus}
       />
     </>
   );

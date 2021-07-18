@@ -117,6 +117,10 @@ const Modal = ({ closeModal }) => {
     closeModal(false);
   };
 
+  const onDelete = (event) => {
+    closeModal(false);
+  };
+
   return (
     <AnimatePresence exitBeforeEnter>
       <motion.div
@@ -194,7 +198,7 @@ const Modal = ({ closeModal }) => {
           </div>
           <div className="footer">
             <button onClick={() => closeModal(false)} id="cancelBtn">
-              Cancel
+              Delete
             </button>
             <button onClick={onSubmit}>Save</button>
           </div>

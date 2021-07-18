@@ -11,8 +11,8 @@ const style = {
   color: 'white',
 };
 
-const CardSlider = ({ accountList, account, selectAccount }) => {
-  const [cardIndex, setCardIndex] = useState(accountList.indexOf(account));
+const CardSlider = ({ accountList, account, setAccount }) => {
+  const [cardIndex, setCardIndex] = useState(0);
 
   //한 달 전으로 이동
   const changeIndex_minus = () => {
@@ -23,7 +23,6 @@ const CardSlider = ({ accountList, account, selectAccount }) => {
   const changeIndex_plus = () => {
     setCardIndex(cardIndex + 1);
   };
-
 
   return (
     <SwipeableViews
@@ -41,7 +40,7 @@ const CardSlider = ({ accountList, account, selectAccount }) => {
           <button
             className={'card' + i}
             style={el === account ? style : null}
-            onClick={() => selectAccount(el)}
+            onClick={() => setAccount(el)}
           >
             {el}
           </button>
