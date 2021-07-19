@@ -2,16 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const IncomeTransaction = ({
+const OutcomeTransaction = ({
   accountId,
   amount,
   categoryId,
   label,
   date,
-  setSendIncome,
-  closeModal,
+  setSendOutcome,
+  closeModal={closeModal}
 }) => {
-  const accountUrl = 'http://172.10.18.176/transaction/income/' + accountId;
+  const accountUrl =
+    'http://172.10.18.176/transaction/expenditure/' + accountId;
 
   const config = {
     headers: {
@@ -20,7 +21,7 @@ const IncomeTransaction = ({
     },
   };
 
-  const { isLoading, error, data } = useQuery('sendIncome', async () => {
+  const { isLoading, error, data } = useQuery('sendOutcome', async () => {
     const response = await axios.post(
       accountUrl,
       {
@@ -38,10 +39,11 @@ const IncomeTransaction = ({
   if (error) {
     console.log('error');
   }
-  setSendIncome(false);
+
+  setSendOutcome(false);
   closeModal(false);
 
   return <div></div>;
 };
 
-export default IncomeTransaction;
+export default OutcomeTransaction;

@@ -7,6 +7,7 @@ import { useQuery, useMutation } from 'react-query';
 import GetAllAccount from '../query/GetAllAccount';
 import GetAllCategories from '../query/GetAllCategories';
 import IncomeTransaction from '../query/IncomeTransaction';
+import OutcomeTransaction from '../query/OutcomeTransaction';
 
 const modalBackground = {
   visible: { opacity: 1 },
@@ -35,10 +36,11 @@ const NewModal = ({ closeModal }) => {
   const [account, setAccount] = useState('');
   const [label, setLabel] = useState('');
   const [amount, setAmount] = useState('');
-  const [sendIncome, setSendIncome] = useState(false);
 
-  let accountId = 0;
-  let categoryId = 0;
+  const [accountId, setAccountId] = useState(0);
+  const [categoryId, setCategoryId] = useState(0);
+  const [sendIncome, setSendIncome] = useState(false);
+  const [sendOutcome, setSendOutcome] = useState(false);
 
   const incomeCategory = () => {
     setIncomeSelect(true);
@@ -71,27 +73,6 @@ const NewModal = ({ closeModal }) => {
     return true;
   };
 
-  // const SendIncome = () => {
-  //   const accountUrl = 'http://172.10.18.176/transaction/income/:' + accountId;
-  //   console.log('accountUrl', accountUrl);
-  //   const { isLoading, error, data } = useQuery('sendIncome', async () => {
-  //     const response = await axios.post(accountUrl, {
-  //       headers: {
-  //         authorization:
-  //           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjQzMTMyMH0.cLTUcksV0DtJ1-WUuPVDpQdqsDe436AKxx_tsehiVW8',
-  //       },
-  //       body: {
-  //         amount: amount,
-  //         categoryId: categoryId,
-  //         content: label,
-  //         data: date,
-  //       },
-  //     });
-  //     console.log(data);
-  //     return response.data.data;
-  //   });
-  // };
-
   const onSubmit = (event) => {
     if (!validateForm()) {
       return;
@@ -100,31 +81,24 @@ const NewModal = ({ closeModal }) => {
     //accountId 구하기
     getAllAccountData.map((el) => {
       if (el.name === account) {
-        accountId = el.id;
+        setAccountId(el.id);
       }
     });
 
     //categoryId 구하기
     getAllCategoriesData.map((el) => {
       if (el.name === category) {
-        categoryId = el.id;
+        setCategoryId(el.id);
       }
     });
 
     if (incomeSelect) {
       setSendIncome(true);
+      console.log('sendIncome', sendIncome);
     } else {
+      setSendOutcome(true);
+      console.log('sendOutcome', sendOutcome);
     }
-
-    // console.log('incomeSelect', incomeSelect);
-    // console.log('outcomSelect', outcomeSelect);
-    // console.log('date', date);
-    // console.log('category', category);
-    // console.log('account', account);
-    // console.log('label', label);
-    // console.log('amount', amount);
-
-    // closeModal(false);
   };
 
   return (
@@ -219,7 +193,6 @@ const NewModal = ({ closeModal }) => {
               Cancel
             </button>
             <button onClick={onSubmit}>Save</button>
-            {console.log('1', sendIncome)}
             {sendIncome ? (
               <IncomeTransaction
                 accountId={accountId}
@@ -227,7 +200,19 @@ const NewModal = ({ closeModal }) => {
                 categoryId={categoryId}
                 label={label}
                 date={date}
-                sendIncome={sendIncome}
+                setSendIncome={setSendIncome}
+                closeModal={closeModal}
+              />
+            ) : null}
+            {sendOutcome ? (
+              <OutcomeTransaction
+                accountId={accountId}
+                amount={amount}
+                categoryId={categoryId}
+                label={label}
+                date={date}
+                setSendOutcome={setSendOutcome}
+                closeModal={closeModal}
               />
             ) : null}
           </div>
