@@ -11,7 +11,7 @@ const IncomeTransaction = ({
   setSendIncome,
   closeModal,
 }) => {
-  const accountUrl = 'http://172.10.18.176/transaction/income/' + accountId;
+  const incomeUrl = 'http://172.10.18.176/transaction/income/' + accountId;
 
   const config = {
     headers: {
@@ -22,7 +22,7 @@ const IncomeTransaction = ({
 
   const { isLoading, error, data } = useQuery('sendIncome', async () => {
     const response = await axios.post(
-      accountUrl,
+      incomeUrl,
       {
         amount: amount,
         categoryId: categoryId,

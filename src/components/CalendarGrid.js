@@ -6,6 +6,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import EditModal from './EditModal';
 import './Modal.css';
 import { useQuery } from 'react-query';
+import GetMonthHistory from '../query/GetMonthHistory';
 
 moment.locale('en-GB');
 const localizer = momentLocalizer(moment);
@@ -14,47 +15,14 @@ const now = new Date();
 const CalendarGrid = ({ index }) => {
   now.setMonth(index);
   const [openModal, setOpenModal] = useState(false);
+  const [history, setHistory] = useState([]);
+  const [monthData, setMonthData] = useState([]);
+  const [clickEvent, setClickEvent] = useState('');
 
-  //db에서 월별 data 가져오기
-  // const tmp = index + 1;
-  // const url =
-  //   'http://172.10.18.176/transaction/historyByCategory?year=2021&month=' + tmp;
-
-  // const { isLoading, error, data } = useQuery('monthData', async () => {
-  //   try {
-  //     const res = await axios.get(url, {
-  //       headers: {
-  //         authorization:
-  //           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTYyNjU4NDc0NX0.b8y9ylrQoV1YQjV1ESbqV5x1oEV58V6WtCpqywsp7XI',
-  //       },
-  //     });
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //     throw new Error(error);
-  //   }
-  // });
-
-  const [history, setHistory] = useState([
-    {
-      title: '출근',
-      allDay: false,
-      start: new Date(2021, 6, 16, 10, 0),
-      end: new Date(2021, 6, 16, 10, 30),
-    },
-    {
-      title: '퇴근',
-      allDay: false,
-      start: new Date(2021, 6, 16, 10, 0),
-      end: new Date(2021, 6, 16, 10, 30),
-    },
-  ]);
-
-  // useEffect(() => {
-  //   axios.post().then((response) => {
-  //     setHistory();
-  //   });
-  // });
+  const popUp = (event) => {
+    setClickEvent(event);
+    setOpenModal(true);
+  };
 
   return (
     <div
@@ -66,7 +34,19 @@ const CalendarGrid = ({ index }) => {
         paddingBottom: 100,
       }}
     >
-      {openModal && <EditModal closeModal={setOpenModal} scrollable={true} />}
+      <GetMonthHistory
+        index={index}
+        setHistory={setHistory}
+        setMonthData={setMonthData}
+      />
+      {openModal && (
+        <EditModal
+          closeModal={setOpenModal}
+          monthData={monthData}
+          clickEvent={clickEvent}
+          scrollable={true}
+        />
+      )}
       <Calendar
         toolbar={Boolean(false)}
         localizer={localizer}
@@ -75,7 +55,7 @@ const CalendarGrid = ({ index }) => {
         navigate={['TODAY']}
         views={['month']} //view only month
         defaultDate={now}
-        onSelectEvent={() => setOpenModal(true)}
+        onSelectEvent={(event) => popUp(event)}
         // onDoubleClickEvent={popUp}
       />
     </div>

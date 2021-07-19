@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import './Modal.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import CardSlider from './CardSlider';
-import axios from 'axios';
-import { useQuery, useMutation } from 'react-query';
 import GetAllAccount from '../query/GetAllAccount';
 import GetAllCategories from '../query/GetAllCategories';
 import IncomeTransaction from '../query/IncomeTransaction';
@@ -124,7 +122,7 @@ const NewModal = ({ closeModal }) => {
         <div className="modalContainer">
           <div className="header">
             <div className="title">
-              <h2>Edit</h2>
+              <h2>Add</h2>
             </div>
             <div className="titleCloseBtn">
               <button onClick={() => closeModal(false)}>X</button>
@@ -189,10 +187,9 @@ const NewModal = ({ closeModal }) => {
             />
           </div>
           <div className="footer">
-            <button onClick={() => closeModal(false)} id="cancelBtn">
-              Cancel
+            <button onClick={onSubmit} id="addBtn">
+              Save
             </button>
-            <button onClick={onSubmit}>Save</button>
             {sendIncome ? (
               <IncomeTransaction
                 accountId={accountId}

@@ -2,17 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const OutcomeTransaction = ({
-  accountId,
-  amount,
-  categoryId,
-  label,
-  date,
-  setSendOutcome,
-  closeModal = { closeModal },
-}) => {
-  const outcomeUrl =
-    'http://172.10.18.176/transaction/expenditure/' + accountId;
+const DeleteOne = ({ clickEvent, setSendDelete, closeModal }) => {
+  const deleteUrl = 'http://172.10.18.176/transaction/deleteOne';
 
   const config = {
     headers: {
@@ -21,14 +12,11 @@ const OutcomeTransaction = ({
     },
   };
 
-  const { isLoading, error, data } = useQuery('sendOutcome', async () => {
+  const { isLoading, error, data } = useQuery('deleteOne', async () => {
     const response = await axios.post(
-      outcomeUrl,
+      deleteUrl,
       {
-        amount: amount,
-        categoryId: categoryId,
-        content: label,
-        date: date,
+        transactionId: clickEvent.index,
       },
       config,
     );
@@ -40,10 +28,9 @@ const OutcomeTransaction = ({
     console.log('error');
   }
 
-  setSendOutcome(false);
+  setSendDelete(false);
   closeModal(false);
-
   return <div></div>;
 };
 
-export default OutcomeTransaction;
+export default DeleteOne;

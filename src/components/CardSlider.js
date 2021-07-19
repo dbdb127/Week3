@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { withTheme } from 'styled-components';
 import './CardSlider.css';
@@ -11,8 +11,12 @@ const style = {
   color: 'white',
 };
 
-const CardSlider = ({ accountList, account, setAccount }) => {
-  const [cardIndex, setCardIndex] = useState(0);
+const CardSlider = ({ accountList, account, accountId, setAccount }) => {
+  const [cardIndex, setCardIndex] = useState(accountId);
+
+  useEffect(() => {
+    setCardIndex(accountId - 1);
+  }, [accountId]);
 
   //한 달 전으로 이동
   const changeIndex_minus = () => {

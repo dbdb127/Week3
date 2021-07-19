@@ -139,6 +139,11 @@
   cursor: pointer;
 }
 
+#addBtn {
+  width: 300px;
+  height: 45px;
+}
+
 #cancelBtn {
   background-color: crimson;
 }

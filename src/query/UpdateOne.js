@@ -2,17 +2,17 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const OutcomeTransaction = ({
-  accountId,
+const UpdateOne = ({
+  clickEvent,
+  label,
   amount,
   categoryId,
-  label,
   date,
-  setSendOutcome,
-  closeModal = { closeModal },
+  accountId,
+  setSendEdit,
+  closeModal,
 }) => {
-  const outcomeUrl =
-    'http://172.10.18.176/transaction/expenditure/' + accountId;
+  const updateUrl = 'http://172.10.18.176/transaction/updateOne';
 
   const config = {
     headers: {
@@ -21,14 +21,22 @@ const OutcomeTransaction = ({
     },
   };
 
-  const { isLoading, error, data } = useQuery('sendOutcome', async () => {
+  const { isLoading, error, data } = useQuery('updateOne', async () => {
+    let tmpType = 'INCOME';
+    if (clickEvent.title.slice(0, 1) === '-') {
+      tmpType = 'EXPENDITURE';
+    }
+
     const response = await axios.post(
-      outcomeUrl,
+      updateUrl,
       {
+        transactionId: clickEvent.index,
+        content: label,
         amount: amount,
         categoryId: categoryId,
-        content: label,
-        date: date,
+        type: tmpType,
+        createdAt: date,
+        accountId: accountId,
       },
       config,
     );
@@ -40,10 +48,10 @@ const OutcomeTransaction = ({
     console.log('error');
   }
 
-  setSendOutcome(false);
+  setSendEdit(false);
   closeModal(false);
 
   return <div></div>;
 };
 
-export default OutcomeTransaction;
+export default UpdateOne;

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './Modal.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import CardSlider from './CardSlider';
+import GetAllAccount from '../query/GetAllAccount';
+import GetAllCategories from '../query/GetAllCategories';
+import UpdateOne from '../query/UpdateOne';
+import DeleteOne from '../query/DeleteOne';
 
 const modalBackground = {
   visible: { opacity: 1 },
@@ -13,76 +17,89 @@ const style = {
   color: 'white',
 };
 
-const Modal = ({ closeModal }) => {
+const EditModal = ({ closeModal, monthData, clickEvent }) => {
+  //data 담아놓을 cache
+  const [getAllAccountData, setGetAllAccountData] = useState([]);
+  const [getAllCategoriesData, setGetAllCategoriesData] = useState([]);
+
+  //변수 지정
   const [incomeSelect, setIncomeSelect] = useState(true);
   const [outcomeSelect, setOutcomeSelect] = useState(false);
-  const [date, setDate] = useState('2021-07-17');
-  const [categoryList, setCategoryList] = useState([
-    '월급',
-    '용돈',
-    '기타 수입',
-  ]);
-  const [category, setCategory] = useState('월급');
-  const [accountList, setAccountList] = useState([
-    '346-20-0231-645',
-    '346-21-0231-645',
-    '346-22-0231-645',
-    '346-23-0231-645',
-    '346-24-0231-645',
-    '346-25-0231-645',
-  ]);
-  const [account, setAccount] = useState('346-21-0231-645');
+  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const [incomeCategoryList, setIncomeCategoryList] = useState([]);
+  const [outcomeCategoryList, setOutcomeCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
+  const [category, setCategory] = useState('');
+  const [accountList, setAccountList] = useState([]);
+  const [account, setAccount] = useState('');
   const [label, setLabel] = useState('');
   const [amount, setAmount] = useState('');
 
-  // useEffect(() => {
-  //   //db에서 event에 해당하는 내용 가져오기
-  //   effect;
-  //   return () => {
-  //     setIncomeSelect();
-  //     setOutcomeSelect();
-  //     setCategoryList();
-  //     setCategory();
-  //     setAccountList();
-  //     setAccount();
-  //     setLabel();
-  //     setAmount();
-  //     cleanup;
-  //   };
-  // }, [input]);
+  const [accountId, setAccountId] = useState(0);
+  const [categoryId, setCategoryId] = useState(0);
+  const [sendEdit, setSendEdit] = useState(false);
+  const [sendDelete, setSendDelete] = useState(false);
+
+  useEffect(() => {
+    monthData.map((el) => {
+      if (el.id === clickEvent.index) {
+        //income or expenditure 설정
+        if (el.type === 'INCOME') {
+          incomeCategory();
+        } else {
+          outcomeCategory();
+        }
+
+        //date 설정
+        setDate(el.createdAt.slice(0, 10));
+
+        //category 설정
+        getAllCategoriesData?.map((element) => {
+          if (el.categoryId === element.id) {
+            setCategory(element.name);
+          }
+        });
+
+        //categoryId 설정
+        getAllCategoriesData?.map((element) => {
+          if (element.name === category) {
+            setCategoryId(element.id);
+          }
+        });
+
+        //account 설정
+        getAllAccountData?.map((element) => {
+          if (el.accountId === element.id) {
+            setAccount(element.name);
+          }
+        });
+
+        //accountId 구하기
+        getAllAccountData?.map((element) => {
+          if (element.name === account) {
+            setAccountId(element.id);
+          }
+        });
+
+        //label, amount 설정
+        setLabel(el.content);
+        setAmount(el.amount);
+      }
+    });
+  }, [clickEvent, categoryList]);
 
   const incomeCategory = () => {
     setIncomeSelect(true);
     setOutcomeSelect(false);
     setCategory('');
-
-    //db에서 income category list 가져오기
-    setCategoryList(['월급', '용돈', '기타 수입']);
+    setCategoryList(incomeCategoryList);
   };
 
   const outcomeCategory = () => {
     setIncomeSelect(false);
     setOutcomeSelect(true);
     setCategory('');
-
-    //db에서 outcome category list 가져오기
-    setCategoryList([
-      '식비',
-      '생활',
-      '쇼핑/뷰티',
-      '교통',
-      '의료/건강',
-      '문화/여가',
-      '미분류',
-    ]);
-  };
-
-  const selectCategory = (el) => {
-    setCategory(el);
-  };
-
-  const selectAccount = (el) => {
-    setAccount(el);
+    setCategoryList(outcomeCategoryList);
   };
 
   const validateForm = () => {
@@ -102,23 +119,26 @@ const Modal = ({ closeModal }) => {
     return true;
   };
 
-  const onSubmit = (event) => {
+  const onSubmitAdd = (event) => {
     if (!validateForm()) {
       return;
     }
-    // console.log('incomeSelect', incomeSelect);
-    // console.log('outcomSelect', outcomeSelect);
-    // console.log('date', date);
-    // console.log('category', category);
-    // console.log('account', account);
-    // console.log('label', label);
-    // console.log('amount', amount);
 
-    closeModal(false);
-  };
+    //accountId 구하기
+    getAllAccountData.map((el) => {
+      if (el.name === account) {
+        setAccountId(el.id);
+      }
+    });
 
-  const onDelete = (event) => {
-    closeModal(false);
+    //categoryId 구하기
+    getAllCategoriesData.map((el) => {
+      if (el.name === category) {
+        setCategoryId(el.id);
+      }
+    });
+
+    setSendEdit(true);
   };
 
   return (
@@ -129,6 +149,18 @@ const Modal = ({ closeModal }) => {
         initial="hidden"
         animate="visible"
       >
+        <GetAllAccount
+          setAccountList={setAccountList}
+          setGetAllAccountData={setGetAllAccountData}
+        />
+
+        <GetAllCategories
+          setIncomeCategoryList={setIncomeCategoryList}
+          setOutcomeCategoryList={setOutcomeCategoryList}
+          setCategoryList={setCategoryList}
+          setGetAllCategoriesData={setGetAllCategoriesData}
+        />
+
         <div className="modalContainer">
           <div className="header">
             <div className="title">
@@ -167,7 +199,7 @@ const Modal = ({ closeModal }) => {
                 return (
                   <button
                     style={category === el ? style : null}
-                    onClick={() => selectCategory(el)}
+                    onClick={() => setCategory(el)}
                   >
                     {el}
                   </button>
@@ -178,7 +210,8 @@ const Modal = ({ closeModal }) => {
               <CardSlider
                 accountList={accountList}
                 account={account}
-                selectAccount={selectAccount}
+                accountId={accountId}
+                setAccount={setAccount}
               />
             </div>
             <input
@@ -197,10 +230,29 @@ const Modal = ({ closeModal }) => {
             />
           </div>
           <div className="footer">
-            <button onClick={() => closeModal(false)} id="cancelBtn">
-              Delete
+            <button onClick={() => setSendDelete(true)} id="cancelBtn">
+              Remove
             </button>
-            <button onClick={onSubmit}>Save</button>
+            <button onClick={onSubmitAdd}>Save</button>
+            {sendEdit ? (
+              <UpdateOne
+                clickEvent={clickEvent}
+                label={label}
+                amount={amount}
+                categoryId={categoryId}
+                date={date}
+                accountId={accountId}
+                setSendEdit={setSendEdit}
+                closeModal={closeModal}
+              />
+            ) : null}
+            {sendDelete ? (
+              <DeleteOne
+                clickEvent={clickEvent}
+                setSendDelete={setSendDelete}
+                closeModal={closeModal}
+              />
+            ) : null}
           </div>
         </div>
       </motion.div>
@@ -208,4 +260,4 @@ const Modal = ({ closeModal }) => {
   );
 };
 
-export default Modal;
+export default EditModal;
