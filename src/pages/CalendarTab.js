@@ -17,6 +17,9 @@ const CalendarTab = () => {
     setIndex(index + 1);
   };
 
+  const [income, setIncome] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  const [outcome, setOutcome] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
   return (
     <>
       <SwipeView
@@ -26,12 +29,16 @@ const CalendarTab = () => {
       />
 
       <div className="box">
-        <div className="blue_box">+text</div>
-        <div className="red_box">-text</div>
+        <div className="blue_box">{'+' + income[index]}</div>
+        <div className="red_box">{'-' + outcome[index]}</div>
       </div>
 
       <CalendarGrid
         index={index}
+        income={income}
+        setIncome={setIncome}
+        outcome={outcome}
+        setOutcome={setOutcome}
       />
     </>
   );

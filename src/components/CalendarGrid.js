@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import EditModal from './EditModal';
 import './Modal.css';
-import { useQuery } from 'react-query';
 import GetMonthHistory from '../query/GetMonthHistory';
 
 moment.locale('en-GB');
 const localizer = momentLocalizer(moment);
 const now = new Date();
 
-const CalendarGrid = ({ index }) => {
+const CalendarGrid = ({ index, income, setIncome, outcome, setOutcome }) => {
   now.setMonth(index);
   const [openModal, setOpenModal] = useState(false);
   const [history, setHistory] = useState([]);
@@ -22,6 +20,21 @@ const CalendarGrid = ({ index }) => {
   const popUp = (event) => {
     setClickEvent(event);
     setOpenModal(true);
+  };
+
+  const eventStyleGetter = (event) => {
+    if (event.title.slice(0, 1) === '-') {
+      var style = {
+        backgroundColor: 'royalblue',
+      };
+    } else {
+      var style = {
+        backgroundColor: 'crimson',
+      };
+    }
+    return {
+      style: style,
+    };
   };
 
   return (
@@ -38,6 +51,10 @@ const CalendarGrid = ({ index }) => {
         index={index}
         setHistory={setHistory}
         setMonthData={setMonthData}
+        income={income}
+        setIncome={setIncome}
+        outcome={outcome}
+        setOutcome={setOutcome}
       />
       {openModal && (
         <EditModal
@@ -56,7 +73,9 @@ const CalendarGrid = ({ index }) => {
         views={['month']} //view only month
         defaultDate={now}
         onSelectEvent={(event) => popUp(event)}
-        // onDoubleClickEvent={popUp}
+        eventPropGetter={eventStyleGetter}
+        showAllEvents={Boolean(true)}
+        doShowMoreDrillDown={Boolean(true)}
       />
     </div>
   );
