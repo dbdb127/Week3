@@ -126,13 +126,6 @@ const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
       }
     });
 
-    //categoryId 구하기
-    getAllCategoriesData.map((el) => {
-      if (el.name === category) {
-        setCategoryId(el.id);
-      }
-    });
-
     setSendEdit(true);
   };
 
@@ -234,7 +227,7 @@ const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
                 clickEvent={clickEvent}
                 label={label}
                 amount={amount}
-                categoryId={categoryId}
+                categoryId={category}
                 date={date}
                 accountId={accountId}
                 setSendEdit={setSendEdit}

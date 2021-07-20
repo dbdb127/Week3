@@ -58,3 +58,7 @@
   background: linear-gradient(to right bottom, #ff9f8a, #f45c06);
   color: #940606;
 }
+
+.balance {
+  font-weight: bold;
+}

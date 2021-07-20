@@ -83,13 +83,6 @@ const NewModal = ({ closeModal }) => {
       }
     });
 
-    //categoryId 구하기
-    getAllCategoriesData.map((el) => {
-      if (el.name === category) {
-        setCategoryId(el.id);
-      }
-    });
-
     if (incomeSelect) {
       setSendIncome(true);
     } else {
@@ -116,7 +109,6 @@ const NewModal = ({ closeModal }) => {
           setCategoryList={setCategoryList}
           setGetAllCategoriesData={setGetAllCategoriesData}
         />
-        {console.log(accountList)}
         <div className="modalContainer">
           <div className="header">
             <div className="title">
