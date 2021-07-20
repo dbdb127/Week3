@@ -92,10 +92,8 @@ const NewModal = ({ closeModal }) => {
 
     if (incomeSelect) {
       setSendIncome(true);
-      console.log('sendIncome', sendIncome);
     } else {
       setSendOutcome(true);
-      console.log('sendOutcome', sendOutcome);
     }
   };
 
@@ -118,7 +116,7 @@ const NewModal = ({ closeModal }) => {
           setCategoryList={setCategoryList}
           setGetAllCategoriesData={setGetAllCategoriesData}
         />
-
+        {console.log(accountList)}
         <div className="modalContainer">
           <div className="header">
             <div className="title">
@@ -169,6 +167,7 @@ const NewModal = ({ closeModal }) => {
                 accountList={accountList}
                 account={account}
                 setAccount={setAccount}
+                accountId={accountId}
               />
             </div>
             <input

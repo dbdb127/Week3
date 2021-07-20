@@ -68,7 +68,6 @@ const CalendarGrid = ({ index, income, setIncome, outcome, setOutcome }) => {
         localizer={localizer}
         events={history}
         step={60}
-        navigate={['TODAY']}
         views={['month']} //view only month
         defaultDate={now}
         onSelectEvent={(event) => popUp(event)}

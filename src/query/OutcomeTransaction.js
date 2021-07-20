@@ -9,7 +9,7 @@ const OutcomeTransaction = ({
   label,
   date,
   setSendOutcome,
-  closeModal = { closeModal },
+  closeModal,
 }) => {
   const outcomeUrl =
     'http://172.10.18.176/transaction/expenditure/' + accountId;
@@ -17,7 +17,7 @@ const OutcomeTransaction = ({
   const config = {
     headers: {
       authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjQzMTMyMH0.cLTUcksV0DtJ1-WUuPVDpQdqsDe436AKxx_tsehiVW8',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjc2MDc4OX0.FlOBhJXNEvceuwSN_stUfwuQy03jR0qpc_fLQVazVbo',
     },
   };
 

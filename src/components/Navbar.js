@@ -8,13 +8,8 @@ import {
   faCreditCard,
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import CardList from './CardList';
-import Transfer from './Transfer';
 
 const Navbar = () => {
-  const [openCardList, setOpenCardList] = useState(false);
-  const [openTransfer, setOpenTransfer] = useState(false);
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light ">
@@ -65,7 +60,7 @@ const Navbar = () => {
               </li>
               <StyledSpan />
               <li className="nav-item">
-                <Button onClick={() => setOpenCardList(true)}>
+                <Button>
                   <StyledIcon icon={faCreditCard} size="2x" />
                   {/* Payment */}
                 </Button>
@@ -74,20 +69,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      {openCardList && (
-        <CardList
-          openCardList={openCardList}
-          setOpenCardList={setOpenCardList}
-          setOpenTransfer={setOpenTransfer}
-        />
-      )}
-      {openTransfer && (
-        <Transfer
-          openTransfer={openTransfer}
-          setOpenTransfer={setOpenTransfer}
-          setOpenCardList={setOpenCardList}
-        />
-      )}
     </>
   );
 };

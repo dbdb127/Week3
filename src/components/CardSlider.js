@@ -14,8 +14,9 @@ const style = {
 const CardSlider = ({ accountList, account, accountId, setAccount }) => {
   const [cardIndex, setCardIndex] = useState(accountId);
 
+  //수정
   useEffect(() => {
-    setCardIndex(accountId - 1);
+    setCardIndex(accountId);
   }, [accountId]);
 
   //한 달 전으로 이동
@@ -27,6 +28,30 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
   const changeIndex_plus = () => {
     setCardIndex(cardIndex + 1);
   };
+
+  let cardName = [];
+  accountList.map((el) => {
+    if (el.includes('신한') || el.includes('shinhan')) {
+      cardName.push('shinhan');
+    } else if (el.includes('삼성') || el.includes('samsung')) {
+      cardName.push('samsung');
+    } else if (el.includes('카카오') || el.includes('kakao')) {
+      cardName.push('kakao');
+    } else if (el.includes('롯데') || el.includes('lotte')) {
+      cardName.push('lotte');
+    } else if (el.includes('우리') || el.includes('woori')) {
+      cardName.push('woori');
+    } else if (el.includes('현금') || el.includes('cash')) {
+      cardName.push('cash');
+    } else if (el.includes('현대') || el.includes('hyundai')) {
+      cardName.push('hyundai');
+    } else if (el.includes('비씨') || el.includes('bc')) {
+      cardName.push('bc');
+    } else {
+      cardName.push('default');
+    }
+  });
+
   return (
     <SwipeableViews
       enableMouseEvents
@@ -34,10 +59,10 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
       disabled={Boolean(true)} //swipe 불가
     >
       {accountList.map((el, i) => (
-        <>
+        <div className="contain">
           {i >= 1 ? <Button onClick={changeIndex_minus}>{left}</Button> : null}
           <button
-            className={'card' + i}
+            className={`card0 ${cardName[i]+'0'}`}
             style={el === account ? style : null}
             onClick={() => setAccount(el)}
           >
@@ -46,7 +71,7 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
           {i < accountList.length - 1 ? (
             <Button onClick={changeIndex_plus}>{right}</Button>
           ) : null}
-        </>
+        </div>
       ))}
     </SwipeableViews>
   );
@@ -59,6 +84,7 @@ const Button = styled.button`
   font-size: 45px;
   cursor: pointer;
   display: inline-block;
+  vertical-align: middle;
 `;
 
 export default CardSlider;

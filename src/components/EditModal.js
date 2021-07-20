@@ -61,11 +61,11 @@ const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
           }
         });
 
-        //account 설정
-        getAllAccountData?.map((element) => {
+        //account 설정 수정
+        getAllAccountData?.map((element, i) => {
           if (el.accountId === element.id) {
             setAccount(element.name);
-            setAccountId(element.id);
+            setAccountId(i);
           }
         });
 
@@ -82,8 +82,6 @@ const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
     getAllCategoriesData,
     getAllAccountData,
   ]);
-
-  console.log(accountId);
 
   const incomeCategory = () => {
     setIncomeSelect(true);
