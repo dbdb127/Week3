@@ -25,11 +25,11 @@ const CalendarGrid = ({ index, income, setIncome, outcome, setOutcome }) => {
   const eventStyleGetter = (event) => {
     if (event.title.slice(0, 1) === '-') {
       var style = {
-        backgroundColor: 'royalblue',
+        backgroundColor: 'crimson',
       };
     } else {
       var style = {
-        backgroundColor: 'crimson',
+        backgroundColor: 'royalblue',
       };
     }
     return {
@@ -58,10 +58,9 @@ const CalendarGrid = ({ index, income, setIncome, outcome, setOutcome }) => {
       />
       {openModal && (
         <EditModal
-          closeModal={setOpenModal}
+          setOpenModal={setOpenModal}
           monthData={monthData}
           clickEvent={clickEvent}
-          scrollable={true}
         />
       )}
       <Calendar

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
@@ -10,7 +10,7 @@ const UpdateOne = ({
   date,
   accountId,
   setSendEdit,
-  closeModal,
+  setOpenModal,
 }) => {
   const updateUrl = 'http://172.10.18.176/transaction/updateOne';
 
@@ -40,7 +40,7 @@ const UpdateOne = ({
       },
       config,
     );
-    console.log(response);
+
     return response;
   });
 
@@ -48,8 +48,10 @@ const UpdateOne = ({
     console.log('error');
   }
 
-  setSendEdit(false);
-  closeModal(false);
+  useEffect(() => {
+    setSendEdit(false);
+    setOpenModal(false);
+  }, [data]);
 
   return <div></div>;
 };

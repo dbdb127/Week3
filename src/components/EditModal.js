@@ -17,7 +17,7 @@ const style = {
   color: 'white',
 };
 
-const EditModal = ({ closeModal, monthData, clickEvent }) => {
+const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
   //data 담아놓을 cache
   const [getAllAccountData, setGetAllAccountData] = useState([]);
   const [getAllCategoriesData, setGetAllCategoriesData] = useState([]);
@@ -57,13 +57,7 @@ const EditModal = ({ closeModal, monthData, clickEvent }) => {
         getAllCategoriesData?.map((element) => {
           if (el.categoryId === element.id) {
             setCategory(element.name);
-          }
-        });
-
-        //categoryId 설정
-        getAllCategoriesData?.map((element) => {
-          if (element.name === category) {
-            setCategoryId(element.id);
+            setCategoryId(el.categoryId);
           }
         });
 
@@ -71,12 +65,6 @@ const EditModal = ({ closeModal, monthData, clickEvent }) => {
         getAllAccountData?.map((element) => {
           if (el.accountId === element.id) {
             setAccount(element.name);
-          }
-        });
-
-        //accountId 구하기
-        getAllAccountData?.map((element) => {
-          if (element.name === account) {
             setAccountId(element.id);
           }
         });
@@ -86,7 +74,16 @@ const EditModal = ({ closeModal, monthData, clickEvent }) => {
         setAmount(el.amount);
       }
     });
-  }, [clickEvent, categoryList]);
+  }, [
+    ,
+    clickEvent,
+    incomeCategoryList,
+    outcomeCategoryList,
+    getAllCategoriesData,
+    getAllAccountData,
+  ]);
+
+  console.log(accountId);
 
   const incomeCategory = () => {
     setIncomeSelect(true);
@@ -167,7 +164,7 @@ const EditModal = ({ closeModal, monthData, clickEvent }) => {
               <h2>Edit</h2>
             </div>
             <div className="titleCloseBtn">
-              <button onClick={() => closeModal(false)}>X</button>
+              <button onClick={() => setOpenModal(false)}>X</button>
             </div>
           </div>
           <div className="body">
@@ -243,14 +240,14 @@ const EditModal = ({ closeModal, monthData, clickEvent }) => {
                 date={date}
                 accountId={accountId}
                 setSendEdit={setSendEdit}
-                closeModal={closeModal}
+                setOpenModal={setOpenModal}
               />
             ) : null}
             {sendDelete ? (
               <DeleteOne
                 clickEvent={clickEvent}
                 setSendDelete={setSendDelete}
-                closeModal={closeModal}
+                setOpenModal={setOpenModal}
               />
             ) : null}
           </div>

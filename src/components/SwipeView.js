@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import './SwipeView.css';
+import styled from 'styled-components';
 
 const list = [
   'Jan',
@@ -26,47 +26,105 @@ const SwipeView = (props) => {
     >
       {list.map((el, i) => (
         <>
-          <div className="month_list">
-            <div className="month_before">
+          <MonthList>
+            <MonthBefore>
               {i >= 1 ? (
-                <div id="year">
+                <Year>
                   2021
                   <br />
-                </div>
+                </Year>
               ) : null}
-              <button
-                className="month_btn_left"
-                onClick={props.changeIndex_minus}
-              >
+              <MonthBtnLeft onClick={props.changeIndex_minus}>
                 {list[i - 1]}
-              </button>
-            </div>
-            <div className="month_current">
-              <div id="year">
+              </MonthBtnLeft>
+            </MonthBefore>
+            <MonthCurrent>
+              <Year>
                 2021
                 <br />
-              </div>
+              </Year>
               {el}
-            </div>
-            <div className="month_after">
+            </MonthCurrent>
+            <MonthAfter>
               {i <= 10 ? (
-                <div id="year">
+                <Year>
                   2021
                   <br />
-                </div>
+                </Year>
               ) : null}
-              <button
-                className="month_btn_right"
-                onClick={props.changeIndex_plus}
-              >
+              <MonthBtnRight onClick={props.changeIndex_plus}>
                 {list[i + 1]}
-              </button>
-            </div>
-          </div>
+              </MonthBtnRight>
+            </MonthAfter>
+          </MonthList>
         </>
       ))}
     </SwipeableViews>
   );
 };
+
+const MonthList = styled.div`
+  width: 90%;
+  margin: 10px auto;
+  display: flex;
+  box-sizing: border-box;
+  text-align: center;
+  font-weight: bolder;
+`;
+
+const MonthBefore = styled.div`
+  color: darkgray;
+  flex: 1;
+  width: 25%;
+  font-size: 45px;
+`;
+
+const MonthCurrent = styled.div`
+  color: black;
+  display: 'center';
+  padding: 15;
+  height: 100;
+  color: '#000';
+  flex: 1;
+  width: 40%;
+  font-size: 45px;
+`;
+
+const MonthAfter = styled.div`
+  color: darkgray;
+  flex: 1;
+  width: 25%;
+  font-size: 45px;
+`;
+
+const Year = styled.div`
+  font-weight: normal;
+  font-size: 19px;
+`;
+
+const MonthBtnLeft = styled.button`
+  border: none;
+  background-color: inherit;
+  font-size: 45px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  /* color: darkgray; */
+  background: linear-gradient(to left, darkgray, white);
+  color: transparent;
+  -webkit-background-clip: text;
+`;
+
+const MonthBtnRight = styled.button`
+  border: none;
+  background-color: inherit;
+  font-size: 45px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: bold;
+  background: linear-gradient(to right, darkgray, white);
+  color: transparent;
+  -webkit-background-clip: text;
+`;
 
 export default SwipeView;

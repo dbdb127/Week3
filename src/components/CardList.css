@@ -1,0 +1,189 @@
+.cardModalBackground {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1.875rem) saturate(1.7);
+  top: 0;
+  position: fixed;
+  display: flex;
+  z-index: 10;
+  overflow-y: scroll;
+}
+
+.cardModalContainer {
+  /* width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  color: black; */
+}
+
+.text {
+  color: white;
+  font-size: 3.75rem;
+  font-weight: 700;
+  margin-top: 50px;
+  margin-left: 50px;
+}
+
+@keyframes slidein {
+  from {
+    margin-right: -20px;
+  }
+
+  to {
+    margin-right: 30px;
+  }
+}
+
+.account0 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #fff3c9, #63a1ff);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #605645;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account0:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.account1 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #467aff, #1b45b2);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #c4d0fd;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 220px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account1:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.account2 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #f13e74, #7e4242);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #ffb0c3;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 430px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account2:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.account3 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #d4d66f, #66b105);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #224804;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 640px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account3:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.account4 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #ffda55, #f90);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #6f3806;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 850px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account4:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}
+
+.account5 {
+  --size: 20.125rem;
+  width: var(--size);
+  height: calc(var(--size) * 0.5864);
+  border: none;
+  background: linear-gradient(to right bottom, #9de8ff, #3484ce);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 12px;
+  color: #0f3e69;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+  position: absolute;
+  top: 1060px;
+  display: inline-block;
+  margin: 15px -30px;
+  right: 0px;
+}
+
+.account5:hover {
+  animation-duration: 0.3s;
+  animation-name: slidein;
+  animation-fill-mode: forwards;
+}

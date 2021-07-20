@@ -2,7 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-const DeleteOne = ({ clickEvent, setSendDelete, closeModal }) => {
+const DeleteOne = ({
+  clickEvent,
+  setSendDelete,
+  setOpenModal,
+}) => {
   const deleteUrl = 'http://172.10.18.176/transaction/deleteOne';
 
   const config = {
@@ -20,7 +24,6 @@ const DeleteOne = ({ clickEvent, setSendDelete, closeModal }) => {
       },
       config,
     );
-    console.log(response);
     return response;
   });
 
@@ -29,8 +32,11 @@ const DeleteOne = ({ clickEvent, setSendDelete, closeModal }) => {
   }
 
   setSendDelete(false);
-  closeModal(false);
-  return <div></div>;
+  setOpenModal(false);
+  return (
+    <div>
+    </div>
+  );
 };
 
 export default DeleteOne;

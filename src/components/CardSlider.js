@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import './CardSlider.css';
 
 const left = '<';
@@ -27,7 +27,6 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
   const changeIndex_plus = () => {
     setCardIndex(cardIndex + 1);
   };
-
   return (
     <SwipeableViews
       enableMouseEvents
@@ -36,11 +35,7 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
     >
       {accountList.map((el, i) => (
         <>
-          {i >= 1 ? (
-            <button className="move" onClick={changeIndex_minus}>
-              {left}
-            </button>
-          ) : null}
+          {i >= 1 ? <Button onClick={changeIndex_minus}>{left}</Button> : null}
           <button
             className={'card' + i}
             style={el === account ? style : null}
@@ -49,14 +44,21 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
             {el}
           </button>
           {i < accountList.length - 1 ? (
-            <button className="move" onClick={changeIndex_plus}>
-              {right}
-            </button>
+            <Button onClick={changeIndex_plus}>{right}</Button>
           ) : null}
         </>
       ))}
     </SwipeableViews>
   );
 };
+
+const Button = styled.button`
+  border: none;
+  background-color: inherit;
+  color: black;
+  font-size: 45px;
+  cursor: pointer;
+  display: inline-block;
+`;
 
 export default CardSlider;
