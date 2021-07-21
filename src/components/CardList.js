@@ -78,7 +78,7 @@ const CardList = ({
               <div className="text">Manage Your Payments</div>
               {accountList.map((el, i) => (
                 <button
-                  className={`card0 ${cardName[i] + '1'}`}
+                  className={cardName[i] + '1'}
                   onClick={() => onSubmit(cardName[i])}
                 >
                   {el}

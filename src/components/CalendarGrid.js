@@ -5,6 +5,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import EditModal from './EditModal';
 import './Modal.css';
 import GetMonthHistory from '../query/GetMonthHistory';
+import { faBold } from '@fortawesome/free-solid-svg-icons';
 
 moment.locale('en-GB');
 const localizer = momentLocalizer(moment);
@@ -25,11 +26,21 @@ const CalendarGrid = ({ index, income, setIncome, outcome, setOutcome }) => {
   const eventStyleGetter = (event) => {
     if (event.title.slice(0, 1) === '-') {
       var style = {
-        backgroundColor: 'crimson',
+        backgroundColor: 'transparent',
+        color: 'crimson',
+        fontWeight: 700,
+        // paddingLeft: '10px',
+        textAlign: 'right',
+        paddingRight: '10px',
       };
     } else {
       var style = {
-        backgroundColor: 'royalblue',
+        backgroundColor: 'transparent',
+        color: 'royalblue',
+        fontWeight: 700,
+        // paddingLeft: '10px',
+        // textAlign: 'right',
+        // paddingRight: '10px',
       };
     }
     return {

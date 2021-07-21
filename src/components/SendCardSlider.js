@@ -7,8 +7,9 @@ const left = '<';
 const right = '>';
 
 const style = {
-  border: 'solid black 4px',
+  border: 'solid black 2px',
   color: 'white',
+  animation: 'float 2s ease-in-out infinite',
 };
 
 const SendCardSlider = ({

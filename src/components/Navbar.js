@@ -83,7 +83,6 @@ const Navbar = () => {
           setSelectAccount={setSelectAccount}
         />
       )}
-      {console.log(selectAccount)}
       {openTransfer && (
         <Transfer
           setOpenTransfer={setOpenTransfer}

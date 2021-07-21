@@ -12,14 +12,17 @@ const Send = ({
   date,
   setOpenTransfer,
 }) => {
+  setOpenTransfer(false);
   const sendUrl = 'http://172.10.18.176/transaction/send/' + accountId;
 
   const config = {
     headers: {
       authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjc2MDc4OX0.FlOBhJXNEvceuwSN_stUfwuQy03jR0qpc_fLQVazVbo',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYyNjc3MTM5Nn0.V7tnQ_gcSYBZOx4GiHNiu47aIP2TxypxTy5K2YSUkiE',
     },
   };
+
+  console.log(date);
 
   const { isLoading, error, data } = useQuery('send', async () => {
     const response = await axios.post(
@@ -37,18 +40,14 @@ const Send = ({
     if (response.data.ok === false) {
       alert('Out of balance!');
     }
-    console.log('1', response.data.ok);
     return response;
   });
-
-  console.log(data);
 
   if (error) {
     console.log('error');
   }
 
   setSend(false);
-  setOpenTransfer(false);
   return <div></div>;
 };
 

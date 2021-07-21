@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 const OutcomeTransaction = ({
   accountId,
   amount,
-  categoryId,
+  category,
   label,
   date,
   setSendOutcome,
@@ -17,7 +17,7 @@ const OutcomeTransaction = ({
   const config = {
     headers: {
       authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjc2MDc4OX0.FlOBhJXNEvceuwSN_stUfwuQy03jR0qpc_fLQVazVbo',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYyNjc3MTM5Nn0.V7tnQ_gcSYBZOx4GiHNiu47aIP2TxypxTy5K2YSUkiE',
     },
   };
 
@@ -26,13 +26,16 @@ const OutcomeTransaction = ({
       outcomeUrl,
       {
         amount: amount,
-        categoryId: categoryId,
+        categoryName: category,
         content: label,
         date: date,
       },
       config,
     );
-    console.log(response);
+
+    if (response.data.ok === false) {
+      alert('Out of balance!');
+    }
     return response;
   });
 

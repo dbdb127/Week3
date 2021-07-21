@@ -25,7 +25,10 @@ const EditModal = ({ setOpenModal, monthData, clickEvent }) => {
   //변수 지정
   const [incomeSelect, setIncomeSelect] = useState(true);
   const [outcomeSelect, setOutcomeSelect] = useState(false);
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10));
+  const utcDate = new Date().getTime();
+  const [date, setDate] = useState(
+    new Date(utcDate + 9 * 60 * 60 * 1000).toISOString().slice(0, 10),
+  );
   const [incomeCategoryList, setIncomeCategoryList] = useState([]);
   const [outcomeCategoryList, setOutcomeCategoryList] = useState([]);
   const [categoryList, setCategoryList] = useState([]);

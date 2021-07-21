@@ -12,8 +12,6 @@ const Receive = ({ type, setSendReply, transactionId, setIsPending }) => {
     },
   };
 
-  console.log(transactionId);
-
   const { isLoading, error, data } = useQuery('receive', async () => {
     const response = await axios.post(
       receiveUrl,
@@ -29,9 +27,8 @@ const Receive = ({ type, setSendReply, transactionId, setIsPending }) => {
   if (error) {
     console.log('error');
   }
-
-  setIsPending(false);
   setSendReply(false);
+  setIsPending(false);
 
   return <div></div>;
 };

@@ -51,6 +51,7 @@ const ReceiveModal = ({ pendingData, setIsPending }) => {
               </div>
             </div>
           </div>
+          
           {sendReply && (
             <Receive
               type={type}

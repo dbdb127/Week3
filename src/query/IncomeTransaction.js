@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 const IncomeTransaction = ({
   accountId,
   amount,
-  categoryId,
+  category,
   label,
   date,
   setSendIncome,
@@ -16,16 +16,17 @@ const IncomeTransaction = ({
   const config = {
     headers: {
       authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjc2MDc4OX0.FlOBhJXNEvceuwSN_stUfwuQy03jR0qpc_fLQVazVbo',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYyNjc3MTM5Nn0.V7tnQ_gcSYBZOx4GiHNiu47aIP2TxypxTy5K2YSUkiE',
     },
   };
+
 
   const { isLoading, error, data } = useQuery('sendIncome', async () => {
     const response = await axios.post(
       incomeUrl,
       {
         amount: amount,
-        categoryId: categoryId,
+        categoryName: category,
         content: label,
         date: date,
       },

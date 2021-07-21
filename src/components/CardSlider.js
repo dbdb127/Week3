@@ -7,8 +7,9 @@ const left = '<';
 const right = '>';
 
 const style = {
-  border: 'solid black 4px',
+  border: 'solid black 2px',
   color: 'white',
+  animation: 'float 2s ease-in-out infinite',
 };
 
 const CardSlider = ({ accountList, account, accountId, setAccount }) => {
@@ -62,7 +63,7 @@ const CardSlider = ({ accountList, account, accountId, setAccount }) => {
         <div className="contain">
           {i >= 1 ? <Button onClick={changeIndex_minus}>{left}</Button> : null}
           <button
-            className={`card0 ${cardName[i]+'0'}`}
+            className={`card0 ${cardName[i] + '0'}`}
             style={el === account ? style : null}
             onClick={() => setAccount(el)}
           >

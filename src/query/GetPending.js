@@ -2,11 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-//db에서 userAccountList 가져오기
-
 const GetPending = ({ setIsPending, setPendingData }) => {
   const pendingUrl = 'http://172.10.18.176/transaction/getPending';
-  let check = false;
   const { isLoading, error, data } = useQuery('GetPending', async () => {
     const response = await axios.get(pendingUrl, {
       headers: {
@@ -20,6 +17,8 @@ const GetPending = ({ setIsPending, setPendingData }) => {
 
   if (data) {
     setIsPending(true);
+  } else {
+    setIsPending(false);
   }
   setPendingData(data);
 

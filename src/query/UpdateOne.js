@@ -17,7 +17,7 @@ const UpdateOne = ({
   const config = {
     headers: {
       authorization:
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYyNjc2MDc4OX0.FlOBhJXNEvceuwSN_stUfwuQy03jR0qpc_fLQVazVbo',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImlhdCI6MTYyNjc3MTM5Nn0.V7tnQ_gcSYBZOx4GiHNiu47aIP2TxypxTy5K2YSUkiE',
     },
   };
 
@@ -27,13 +27,13 @@ const UpdateOne = ({
       tmpType = 'EXPENDITURE';
     }
 
-    const response = await axios.post(
+    const response = await axios.put(
       updateUrl,
       {
         transactionId: clickEvent.index,
         content: label,
         amount: amount,
-        category: category,
+        categoryName: category,
         type: tmpType,
         createdAt: date,
         accountId: accountId,
@@ -41,6 +41,9 @@ const UpdateOne = ({
       config,
     );
 
+    if (response.data.ok === false) {
+      alert('Out of balance!');
+    }
     return response;
   });
 

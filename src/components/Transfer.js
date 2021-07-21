@@ -35,7 +35,7 @@ const Transfer = ({ setOpenTransfer, setOpenCardList, selectAccount }) => {
   const [send, setSend] = useState(false);
   const [balance, setBalance] = useState([]);
 
-  const date = new Date().toISOString().slice(0, 10);
+  const date = new Date().toLocaleString().slice(0, 11);
 
   let tmpBalance = [];
 
@@ -72,13 +72,14 @@ const Transfer = ({ setOpenTransfer, setOpenCardList, selectAccount }) => {
         setAccountId(i);
       }
     });
-    setBalance(tmpBalance);
   }, [getAllAccountData]);
 
   useEffect(() => {
     getAllAccountData.map((el) => {
       tmpBalance.push(el.balance);
     });
+
+    setBalance(tmpBalance);
   }, [getAllAccountData]);
 
   const validateForm = () => {
@@ -102,6 +103,7 @@ const Transfer = ({ setOpenTransfer, setOpenCardList, selectAccount }) => {
       alert("Please check 'Amount'.");
       return false;
     }
+    
 
     return true;
   };
@@ -203,7 +205,7 @@ const Transfer = ({ setOpenTransfer, setOpenCardList, selectAccount }) => {
           </div>
         </motion.div>
       </AnimatePresence>
-      {setOpenCardList(false)}
+
       {send ? (
         <Send
           accountId={accountId}
@@ -216,6 +218,7 @@ const Transfer = ({ setOpenTransfer, setOpenCardList, selectAccount }) => {
           setOpenTransfer={setOpenTransfer}
         />
       ) : null}
+      {setOpenCardList(false)}
     </div>
   );
 };
